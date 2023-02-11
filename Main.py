@@ -1,35 +1,44 @@
 import Try_input as t
-import Calculator
+import Rational_numbers
+import Complex_numbers
 from sys import exit
 
 
 class Main():
 
     @staticmethod
-    def hello():
-        print("Добро пожаловать в калькулятор!")
+    def menu():
+        print("С какими числами будете работать?\n"
+              "1 - рациональные\n"
+              "2 - комплексные\n"
+              "0 - выход из программы")
+        ch1 = t.choice_1()
+        if ch1 == "0":
+            print("Выход из программы.\nДо свидания!")
+            exit(1)
+
         print("Какую операцию хотите выполнить?\n"
               "1 - сложение\n"
               "2 - вычитание\n"
               "3 - умножение\n"
-              "4 - деление")
-        choice = t.choice()
+              "4 - деление\n"
+              "0 - возврат в предыдущее меню")
+        ch2 = t.choice_2()
 
-        # if choice == "0":
-        #     print("Выход из программы.\nДо свидания!")
-        #     exit
+        # Перезапуск
+        if ch2 == "0":
+            Main.menu()
+        else:
+            # Переход к рациональным числам
+            if ch1 == "1":
+                calc = Rational_numbers.Rational()
+                calc.operation(ch2)
+                Main.menu()
+            # Переход к комплексным числам
+            elif ch1 == "2":
+                calc = Complex_numbers.Complex()
+                calc.operation(ch2)
+                Main.menu()
 
-        a, b = t.try_input(), t.try_input()
-        calc = Calculator.Calculator()
 
-        if choice == "1":
-            print(calc.add(a, b))
-        elif choice == "2":
-            print(calc.subtract(a, b))
-        elif choice == "3":
-            print(calc.multiply(a, b))
-        elif choice == "4":
-            print(calc.divide(a, b))
-
-
-Main.hello()
+Main.menu()
