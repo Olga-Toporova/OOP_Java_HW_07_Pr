@@ -32,12 +32,12 @@ class Main():
             # Переход к рациональным числам
             if ch1 == "1":
                 calc = Rational_numbers.Rational()
-                calc.operation(ch2)
+                calc.new_number(ch2)
                 Main.menu()
             # Переход к комплексным числам
             elif ch1 == "2":
                 calc = Complex_numbers.Complex()
-                calc.operation(ch2)
+                calc.new_complex_number(ch2)
                 Main.menu()
 
 
